@@ -1,6 +1,6 @@
 // Tenemos un li de productos
 
-const productos = [
+const products = [
   {nombre: "Zapato negro", tipo: "zapato", color: "negro", img: "./taco-negro.jpg"},
   {nombre: "Zapato azul", tipo: "zapato", color: "azul", img: "./taco-azul.jpg"},
   {nombre: "Bota negra", tipo: "bota", color: "negro", img: "./bota-negra.jpg"},
@@ -8,16 +8,16 @@ const productos = [
   {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "./zapato-rojo.jpg"}
 ]
 
-const li = document.getElementsByName("lista-de-productos")
+const li = document.getElementsById("lista-de-productos") // se modifico la correcto metodo  de .getElemntById
 const $i = document.querySelector('.input');
 
-for (let i = 0; i < productos.length; i++) {
+const crearProducto = (producto) => {
   var d = document.createElement("div")
   d.classList.add("producto")
 
   var ti = document.createElement("p")
   ti.classList.add("titulo")
-  ti.textContent = productos[i].nombre
+  ti.textContent = productos.nombre
   
   var imagen = document.createElement("img");
   imagen.setAttribute('src', productos[i].img);
@@ -28,7 +28,7 @@ for (let i = 0; i < productos.length; i++) {
   li.appendChild(d)
 }
 
-displayProductos(productos)
+
 const botonDeFiltro = document.querySelector("button");
 
 botonDeFiltro.onclick = function() {
@@ -40,6 +40,8 @@ botonDeFiltro.onclick = function() {
   console.log(texto);
   const productosFiltrados = filtrado(productos, texto );
 
+
+  function  displayProducts (){ //se agrego funcion displayProducts ya que la invoca despues 
   for (let i = 0; i < productosFiltrados.length; i++) {
     var d = document.createElement("div")
     d.classList.add("producto")
@@ -57,7 +59,8 @@ botonDeFiltro.onclick = function() {
     li.appendChild(d)
   }
 }
-
+displayProductos(productos);
 const filtrado = (productos = [], texto) => {
   return productos.filter(item => item.tipo.includes(texto) || item.color.includes(texto));
 }  
+}
